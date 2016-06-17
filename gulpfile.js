@@ -1,155 +1,103 @@
-var gulp = require('gulp'),
-    gutil = require('gulp-util'),
-    browserify = require('gulp-browserify'),
-    compass = require('gulp-compass'),
-    connect = require('gulp-connect'),
-    gulpif = require('gulp-if'),
-    uglify = require('gulp-uglify'),
-    minifyHTML = require('gulp-minify-html'),
-    concat = require('gulp-concat'),
-    bower = require('gulp-bower'),
-    filter = require('gulp-filter'),
-    order = require('gulp-order'),
-    mainBowerFiles = require('main-bower-files'),
-    bowerOverrides = require('gulp-bower-overrides'),
-minifyCSS = require('gulp-minify-css'),
-jsonminify = require('gulp-jsonminify'),
-    path = require('path');
+var gulp = require('gulp');
+var sass = require('gulp-sass');
+var autoprefixer = require('gulp-autoprefixer');
+var sourcemaps = require('gulp-sourcemaps');
+var browserSync = require('browser-sync');
+var useref = require('gulp-useref');
+var uglify = require('gulp-uglify');
+var gulpIf = require('gulp-if');
+var cssnano = require('gulp-cssnano');
+var imagemin = require('gulp-imagemin');
+var cache = require('gulp-cache');
+var del = require('del');
+var runSequence = require('run-sequence');
 
-var env,
-    jsSources,
-    jsonSources,
-    sassSources,
-    htmlSources,
-    outputDir,
-    cssFiles,
-    sassStyle;
+// Basic Gulp task syntax
+gulp.task('hello', function() {
+  console.log('Hello Zell!');
+})
 
-var config = { 
-    bowerDir: './src/_lib/' 
-}
+// Development Tasks
+// -----------------
 
-env = 'production';
-if (env === 'development') {
-    outputDir = 'builds/development/';
-    sassStyle = 'expanded';
-} else {
-    outputDir = 'builds/production/';
-    sassStyle = 'compressed';
-}
+// Start browserSync server
+gulp.task('browserSync', function() {
+  browserSync({
+    server: {
+      baseDir: 'app'
+    }
+  })
+})
 
-sassSources = ['components/sass/style.scss'];
-htmlSources = [outputDir + '*.html'];
-gulp.task('bower', function () { 
-    return bower() .pipe(gulp.dest(config.bowerDir)) 
+gulp.task('sass', function() {
+  return gulp.src('app/scss/**/*.scss') // Gets all files ending with .scss in app/scss and children dirs
+    .pipe(sass()) // Passes it through a gulp-sass
+    .pipe(gulp.dest('app/css')) // Outputs it in the css folder
+    .pipe(browserSync.reload({ // Reloading with Browser Sync
+      stream: true
+    }));
+})
+
+// Watchers
+gulp.task('watch', function() {
+  gulp.watch('app/scss/**/*.scss', ['sass']);
+  gulp.watch('app/*.html', browserSync.reload);
+  gulp.watch('app/js/**/*.js', browserSync.reload);
+})
+
+// Optimization Tasks
+// ------------------
+
+// Optimizing CSS and JavaScript
+gulp.task('useref', function() {
+
+  return gulp.src('app/*.html')
+    .pipe(useref())
+    .pipe(gulpIf('*.js', uglify()))
+    .pipe(gulpIf('*.css', cssnano()))
+    .pipe(gulp.dest('dist'));
 });
 
-
-
-gulp.task('js', function () {
-    jsSources = ['components/scripts/scripts.js'];
-    gulp.src(mainBowerFiles().concat(jsSources))
-        .pipe(filter('*.js'))
-        .pipe(gulpif(env === 'production', uglify()))
-        .pipe(concat('main.js'))
-        .pipe(gulp.dest(outputDir + 'js'))
-        .pipe(connect.reload());
+// Optimizing Images
+gulp.task('images', function() {
+  return gulp.src('app/images/**/*.+(png|jpg|jpeg|gif|svg)')
+    // Caching images that ran through imagemin
+    .pipe(cache(imagemin({
+      interlaced: true,
+    })))
+    .pipe(gulp.dest('dist/images'))
 });
 
+// Copying fonts
+gulp.task('fonts', function() {
+  return gulp.src('app/fonts/**/*')
+    .pipe(gulp.dest('dist/fonts'))
+})
 
+// Cleaning
+gulp.task('clean', function() {
+  return del.sync('dist').then(function(cb) {
+    return cache.clearAll(cb);
+  });
+})
 
-gulp.task('css', function () {
-    cssFiles = ['src/css/*'];
-    gulp.src(mainBowerFiles())
-        .pipe(filter('*.css'))
-        .pipe(order([
-            'normalize.css',
-            '*'
-        ]))
-        .pipe(concat('components.css'))
-        .pipe(minifyCSS()) //this one is just for css
-        .pipe(gulp.dest(outputDir + 'css'));
+gulp.task('clean:dist', function() {
+  return del.sync(['dist/**/*', '!dist/images', '!dist/images/**/*']);
 });
 
+// Build Sequences
+// ---------------
 
+gulp.task('default', function(callback) {
+  runSequence(['sass', 'browserSync', 'watch'],
+    callback
+  )
+})
 
-
-
-
-
-gulp.task('icons', function () { 
-    return gulp.src(config.bowerDir + 'fontawesome/fonts/**.*') 
-        .pipe(gulp.dest(outputDir + 'fonts')); 
-});
-
-
-gulp.task('materialFonts', function () { 
-    return gulp.src(config.bowerDir + 'materialize/font/*/*.*') 
-        .pipe(gulp.dest(outputDir + 'font')); 
-});
-
-
-
-gulp.task('compass', function () {
-    gulp.src(sassSources)
-        .pipe(compass({
-                sass: 'components/sass',
-                css: outputDir + 'css',
-                image: outputDir + 'images',
-                style: sassStyle,
-                require: ['susy', 'breakpoint']
-            })
-            .on('error', gutil.log))
-        //.pipe(gulp.dest( outputDir + 'css'))
-        .pipe(connect.reload())
-}); +
-
-gulp.task('watch', function () {
-    gulp.watch(jsSources, ['js']);
-    gulp.watch(['components/sass/*.scss', 'components/sass/*/*.scss'], ['compass']);
-    gulp.watch(jsonSources, ['json'])
-    gulp.watch('builds/development/*.html', ['html']);
-});
-
-gulp.task('connect', function () {
-    connect.server({
-        root: outputDir,
-        livereload: true
-    });
-});
-
-
-
-gulp.task('json', function () {
-  jsonSources = ['components/scripts/data.json'];
-        gulp.src(jsonSources)
-      .pipe(gulpif(env === 'production', jsonminify()))
-        .pipe(gulp.dest(outputDir + 'js'))
-        .pipe(connect.reload())
-});
-
-
-
-
-
-
-
-gulp.task('html', function () {
-    gulp.src('builds/development/*.html')
-        .pipe(gulpif(env === 'production', minifyHTML()))
-        .pipe(gulpif(env === 'production', gulp.dest(outputDir)))
-        .pipe(connect.reload())
-});
-
-// Copy images to production
-gulp.task('move', function () {
-    gulp.src('builds/development/images/**/*.*')
-        .pipe(gulpif(env === 'production', gulp.dest(outputDir + 'images')))
-});
-// Copy images to production
-gulp.task('audioMove', function () {
-    gulp.src('builds/development/audio/**/*.*')
-        .pipe(gulpif(env === 'production', gulp.dest(outputDir + 'audio')))
-});
-
-gulp.task('default', ['html', 'icons', 'materialFonts', 'css', 'js', 'compass','json', 'move','audioMove', 'connect', 'watch']);
+gulp.task('build', function(callback) {
+  runSequence(
+    'clean:dist',
+    ['sass', 'useref', 'images', 'fonts'],
+    callback
+  )
+})
