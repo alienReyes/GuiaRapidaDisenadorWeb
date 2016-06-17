@@ -1,0 +1,23 @@
+{
+  "name": "EDD",
+  "version": "1.0.0",
+  "authors": [
+    "Rodrigo Reyes <kid.alien@gmail.com>"
+  ],
+  "description": "a",
+  "license": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "src/_lib",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "fontawesome": "~4.3.0",
+    "jquery": "~2.1.3",
+    "handlebars": "~3.0.3"
+  }
+}
