@@ -1,0 +1,76 @@
+/* Solarized Colors */
+/* Colors from Liverpool */
+/*Material Colors*/
+/*Dimensions*/
+/* Google Fonts */
+@import url(http://fonts.googleapis.com/css?family=Lato:100,400,700,400italic,700italic|Arvo:700|Fjalla+One);
+body {
+  font-family: "Lato", sans-serif;
+  color: #536870;
+  adding-right: 0px !important;
+  margin-right: 0px !important;
+  background: #333;
+  font-size: 16px;
+}
+
+html,
+body {
+  height: 100%;
+  overflow-y: hidden;
+  background: #333;
+}
+
+#mainContainer {
+  background-image: url("../images/menu-bkg.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 450px;
+}
+
+#logo {
+  max-width: 100%;
+  text-align: left;
+  height: 100%;
+}
+
+#header {
+  background: #083B82;
+  color: white;
+}
+#header #mainTitle {
+  font-family: "Lato", sans-serif;
+  font-weight: 100;
+  text-align: left;
+  color: white;
+  font-size: 2.5rem;
+}
+
+#tanscriptbody
+#transcriptCont p {
+  color: #0A2933;
+}
+
+/*==========  Mobile First Method  ==========*/
+/* Custom, iPhone Retina */
+/* Extra Small Devices, Phones */
+@media only screen and (min-width: 480px) {
+  #logo {
+    margin-left: 0px;
+  }
+}
+/* Small Devices, Tablets */
+@media only screen and (min-width: 768px) {
+  #logo {
+    margin-left: -15px;
+  }
+}
+/* Medium Devices, Desktops */
+/* Large Devices, Wide Screens */
+body {
+  background: url("../images/background-blackboard.jpg");
+  background-size: cover;
+}
+
+.jumbotron {
+  background-color: #083B82 !important;
+}
