@@ -12,8 +12,9 @@ var cache = require('gulp-cache');
 var del = require('del');
 var runSequence = require('run-sequence');
 var compass = require('gulp-compass');
-
-
+var mainBowerFiles=require('main-bower-files');
+var filter = require('gulp-filter');
+var concat = require('gulp-concat');
 // Basic Gulp task syntax
 gulp.task('hello', function() {
   console.log('Hello Zell!');
@@ -26,10 +27,19 @@ gulp.task('hello', function() {
 gulp.task('browserSync', function() {
   browserSync({
     server: {
-      baseDir: 'dist'
+      baseDir: 'app'
     }
   })
 })
+
+gulp.task('js', function() {
+	return gulp.src(mainBowerFiles(/* options */), { base: '/bower_components' })
+		.pipe(filter('*.js'))
+		.pipe(concat('components.js'))
+		.pipe(gulp.dest('app/js'));
+});
+
+
 
 
 
@@ -102,7 +112,7 @@ gulp.task('clean:dist', function() {
 // ---------------
 
 gulp.task('default', function(callback) {
-  runSequence(['compass','useref', 'images', 'fonts', 'browserSync','watch'],
+  runSequence(['compass','browserSync','watch'],
     callback
   )
 })
