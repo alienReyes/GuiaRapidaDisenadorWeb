@@ -1,46 +1,44 @@
+// Freelancer Theme JavaScript
 
+(function($) {
+    "use strict"; // Start of use strict
 
-$( document ).ready(function() {
-    console.log( "ready!" );
-
-
-
-$.getJSON('js/data.json', function(data) {
-    var template = document.getElementById('gridTemplate').innerHTML;
-    $.each(data.items, function(i, item) {
-        var html = Mustache.to_html(template, item);
-       $('.grid').append(html);
+    // jQuery for page scrolling feature - requires jQuery Easing plugin
+    $('.page-scroll a').bind('click', function(event) {
+        var $anchor = $(this);
+        $('html, body').stop().animate({
+            scrollTop: ($($anchor.attr('href')).offset().top - 50)
+        }, 1250, 'easeInOutExpo');
+        event.preventDefault();
     });
-     $.each(data.modals, function(i, item) {
-       imageList=$('#imgTemplate').html();
 
-       var templateModal= document.getElementById('modalTemplate').innerHTML;
-        var images=item.images;
-      console.log (imageList)
-         var htmlModal = Mustache.to_html(templateModal, item,images,imageList);
-         $('#modalContainer').append(htmlModal);
-     });
+    // Highlight the top nav as scrolling occurs
+    $('body').scrollspy({
+        target: '.navbar-fixed-top',
+        offset: 51
+    });
 
-});
+    // Closes the Responsive Menu on Menu Item Click
+    $('.navbar-collapse ul li a').click(function(){ 
+            $('.navbar-toggle:visible').click();
+    });
 
-});
-//
-// $grid.on( 'click', '.grid-item-content', function() {
-// var flag=false;
-// if ($( this ).parent('.grid-item').hasClass('is-expanded'))
-// {
-//  flag=true;
-// }
-//
-// $('.grid-item').each(function(index,item){
-// if ($(item).hasClass('is-expanded')) {
-//     $(item).toggleClass('is-expanded');
-//   }
-// });
-// if (flag==false){
-//   $( this ).parent('.grid-item').addClass('is-expanded');
-//   flag==true;
-// }
-//
-// $grid.isotope('layout');
-// });
+    // Offset for Main Navigation
+    $('#mainNav').affix({
+        offset: {
+            top: 100
+        }
+    })
+
+    // Floating label headings for the contact form
+    $(function() {
+        $("body").on("input propertychange", ".floating-label-form-group", function(e) {
+            $(this).toggleClass("floating-label-form-group-with-value", !!$(e.target).val());
+        }).on("focus", ".floating-label-form-group", function() {
+            $(this).addClass("floating-label-form-group-with-focus");
+        }).on("blur", ".floating-label-form-group", function() {
+            $(this).removeClass("floating-label-form-group-with-focus");
+        });
+    });
+
+})(jQuery); // End of use strict
