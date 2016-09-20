@@ -1,54 +1,146 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html> -->
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <title></title>
-  <!--build:css css/style.min.css-->
-<link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css">
-<link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap-theme.css">
-<link rel="stylesheet" href="css/style.css">
-  <!--endbuild-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+
+    <title>Report Card</title>
+
+
+
+
+    <!--build:css css/style.min.css-->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="../bower_components/fontawesome/css/font-awesome.css" />
+    <link rel="stylesheet" href="../bower_components/components-font-awesome/css/font-awesome.css" />
+    <!-- endbower -->
+    <link rel="stylesheet" href="css/style.css">
+    <!--endbuild-->
 </head>
 
 <body>
+      <div class="container mainContainer">
+        <nav class="navbar navbar-dark bg-inverse">
+            <a class="navbar-brand" href="vision.html">Vission and Goals</a>
+
+        </nav>
+        <br>
+        <div class="row">
+          <div class="col-md-10">
+            <h3 class=" mainTitle display-4">Grand City School District – District Report Card</h3>
+
+          </div>
+        </div>
+          <div class="row">
+              <div class="col-md-4">
+                <br>
+                <h2>Mission</h4>
+                <blockquote>Educational Excellence for All Learners to Achieve Academic Success
+and Become Productive Citizens
+</blockquote>
+
+              </div>
+              <div class="col-md-6"><img class="img-fluid" src="images/map.png" alt="" /></div>
+          </div>
+          <div class="row">
 
 
-    <!-- Main jumbotron for a primary marketing message or call to action -->
-    <div class="jumbotron">
-      <div class="container">
+          </div>
 
-      </div>
-    </div>
 
-    <div class="container">
-      <!-- Example row of columns -->
-      <div class="row">
-        <div class="col-md-4">
-          <h2>Heading</h2>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+
+
+<br>
+
+
+
+
+
+
+        <div class="row grid" >
+
+                <!-- .grid-item*10>.grid-item-content>h1+img+p -->
+
+
+            </div>
+
+<!-- end mainContainer -->
         </div>
 
 
-      </div>
 
-      <hr>
+<div id="modalContainer">
 
-      <footer>
-        <p>&copy; Company 2015</p>
-      </footer>
-    </div> <!-- /container -->        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+</div>
+
+
+
+<!-- Button trigger modal -->
+
+<!-- Modal -->
+
+
+
+
     <!--build:js js/main.min.js -->
-    <script src="../bower_components/jquery/dist/jquery.js"type="text/javascript"></script>
-    <script src="../bower_components/bootstrap/dist/js/bootstrap.js"type="text/javascript"></script>
-
-
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/tether/dist/js/tether.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/mustache.js/mustache.js"></script>
+    <!-- endbower -->
     <script src="js/main.js"></script>
     <!-- endbuild -->
 
+    <script id="gridTemplate" type="text/template">
+        <div class="grid-item col-xs-2" data-toggle="modal" data-target={{target}} >
+            <div class="grid-item-content">
+                <img src="images/{{itemImage}}.png" alt="" width="100" height="100">
+                <h6 class="">{{title}}</h6>
+        <p class="dataValue">{{value}}</p>
+      </div>
+    </div>
+</script>
 
 
+
+
+<script id="modalTemplate" type="text/template">
+  <div class="modal fade" id={{id}} tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title" id="myModalLabel">{{title}}</h4>
+        </div>
+        <div class="modal-body">
+          <p>{{content}}</p>
+          <div class="imgContainer">
+            {{#images}}
+  <img class="img-fluid" src="images/{{image}}.png" alt="">
+{{/images}}
+          </div>
+            <p>{{content1}}</p>
+
+              {{#images1}}
+    <img class="img-fluid" src="images/{{image}}.png" alt="">
+  {{/images1}}
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  </script>
+
+<script id="imgTemplate" type="text/template">
+  <img class="img-fluid" src="images/{{image}}.png" alt="">
+
+</script>
 
 
 
