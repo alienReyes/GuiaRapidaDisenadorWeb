@@ -19,7 +19,10 @@ var gutil = require('gulp-util');
 var gulp = require('gulp');
 var debug = require('gulp-debug');
 var jsonminify = require('gulp-jsonminify');
-var wiredep= require ('gulp-wiredep')
+var wiredep= require ('gulp-wiredep');
+var config = { 
+    bowerDir: 'bower_components'
+};
 
 // Basic Gulp task syntax
 
@@ -103,7 +106,9 @@ gulp.task('watch', function() {
 // Optimizing CSS and JavaScript
 gulp.task('useref', function() {
   return gulp.src('app/*.html')
-    .pipe(useref())
+    .pipe(useref({
+      'searchPath':['./', 'bower_components/*']
+    }))
     .pipe(gulpIf('*.js', uglify()))
   //  .pipe(gulpIf('*.css', cssnano()))
     .pipe(gulp.dest('dist'));
@@ -120,11 +125,22 @@ gulp.task('images', function() {
 
 // Copying fonts
 gulp.task('fonts', function() {
-  return gulp.src('app/fonts/**/*')
+  return gulp.src(['app/fonts/**/*'])
     .pipe(gulp.dest('dist/fonts'))
 })
+//icons
+gulp.task('icons', function () { 
+    return gulp.src('bower_components/*/fonts/*.**') 
+    .pipe(debug({title: 'unicorn:'}))
+        .pipe(gulp.dest('dist/fonts')); 
 
-// Copying fonts
+});
+
+
+
+
+
+// Copyinh and minimizing JSON
 gulp.task('jsonCopy', function() {
   return gulp.src('app/js/*.json')
     .pipe(jsonminify())
@@ -154,7 +170,7 @@ gulp.task('default', function(callback) {
 gulp.task('build', function(callback) {
   runSequence(
     'clean:dist',
-    ['compass','jsonCopy', 'useref', 'images', 'fonts'],
+    ['compass','jsonCopy', 'useref', 'images', 'icons','fonts'],
     callback
   )
 })
