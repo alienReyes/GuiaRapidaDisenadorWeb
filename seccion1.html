@@ -6,33 +6,77 @@ isHome: false
 ---
 
 <section class="bs-docs-section">
-  <h1 id="overview" class="page-header"> ¿Qué es HTML?</h1>
-<p>La definición  de HTML es  Hyper Text Markup Language (enguaje de marcas de hipertexto), esto no dice mucho pero se refiere al a comopsición y estructura del lenguaje utilizado para la creación de las paginas web,</p>
-  <blockquote>
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur ratione reprehenderit, consequuntur consequatur voluptas omnis, blanditiis aut reiciendis eos eligendi minima obcaecati, commodi dolores, fugiat beatae accusamus assumenda tenetur repellendus.
-  </blockquote>
+    <h1 id="overview" class="page-header"> En qué consiste una Página Web
+</h1>
+    <p>Las páginas Web son para fines prácticos documentos HTML que se despliegan al usuario en un navegador web, dependiendo el sitio que estemos visitando puede haber un sistema detrás generando el contenido (wordpress, Drupal, Blackboard, etc), o pueden
+        ser simplemente archivos html, no importa lo que haya detrás (backend) el usuario final sólo verá archivos html en su navegador, sin importar si fueron creados dinámicamente o no, para el navegador todo esto es igual.</p>
+    <p>Dado que solo nos interesa la parte que se despliega al usuario final, es decir el documento HTML al que apunta su navegador, este documento hará referencia a diferentes archivos y contendrá diferentes partes de contenido para desplegar la página.
+        Ahora podemos dividir los archivos que componen una página web en 3 partes:</p>
+
+    <ol>
+        <li>Contenido, esto es el HTML donde estará el texto, y la referencia a las imágenes, audio, videos, etc que componen la información que contiene la página, estos últimos no están dentro del HTML sino que este solo apunta hacia ellos y los despliega.</li>
+        <li>Presentación o CSS, las CSS (Cascade Style Sheets) o Cascadas de Estilo, son encargadas de la presentación de la página, aquí están los estilos de texto, los colores, fondos, tipos de letra y demás caracteristicas visuales del documento, estas
+            también se usan para definir la maquetación o layout de la página; no se preocupen hablaremos mas acerca de estas en un futuro.</li>
+        <li>Interacción, este es usualmente un archivo de JavaScript donde estan las instrucciones para las diferentes interacción que el usuario tendrá con nuestro sitio así como algunas animaciones</li>
+    </ol>
+    <p>Como verán una página web está compuesta por diferentes elementos y archivos, acerca de los cuales hablaremos en esta guía.</p>
+
+</section>
+<section class="bs-docs-section">
+    <h1 id="overview" class="page-header"> Definción de HTML </h1>
+    <p>HTML Hyper Text Markup Language (Lenguaje de Marcación de Documentos para Hipertexto) es básicamente un conjunto de etiquetas que se utiliza para establecer el contenido y la estructura de las páginas web.</p>
+    <p>Este Lenguaje de Marcación se define como tal porque utiliza etiquetas (tags en Inglés) para encapsular el contenido y describir diferentes características de este, un ejemplo de una etiqueta sería:</p>
+
+    {% highlight html %}
+    <b>Negritas</b> {% endhighlight %}
+
+
+<p>Que indica que el texto de la etiqueta se presente en negritas, no se preocupen por entender la estructura de la etiqueta por el momento, más adelante profundizaremos en ese concepto.</p>
+<p>En lo que respecta los archivos HTML son simplemente archivos de texto con la particularidad de que usan las extensiones .htm y .html, por eso solo necesitamos un editor de texto para escribir y crear una página web. Es recomendable usar editores sencillos
+    y ligeros como <a href="https://atom.io/" target="_blank">Atom</a> y <a href="http://brackets.io/" target="_blank">Brackets</a> que son un par de herramientas gratuitas y bastante útiles para desarrollar html.</p>
 
 
 </section>
 
-
 <section class="bs-docs-section">
-  <h1 id="overview" class="page-header"> Elementos que  Conforman una Etiqueta</h1>
-<p>La definición  de HTML es  Hyper Text Markup Language (enguaje de marcas de hipertexto), esto no dice mucho pero se refiere al a comopsición y estructura del lenguaje utilizado para la creación de las paginas web,</p>
-  <blockquote>
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur ratione reprehenderit, consequuntur consequatur voluptas omnis, blanditiis aut reiciendis eos eligendi minima obcaecati, commodi dolores, fugiat beatae accusamus assumenda tenetur repellendus.
-  </blockquote>
+    <h1 id="overview" class="page-header">Sintaxis de HTML </h1>
+    <p>Como mencione anteriormente HTML es un lenguaje de marcado/marcación, es decir que su sintaxis se basa en el uso de elementos, delimitados por etiquetas o tags en inglés, para definir y describir los diferentes elementos que componen al documento.
+    </p>
+
+    {% highlight html %}
+    <html>
+    <body>
+        <h1>Esto es un encabezado nivel 1 </h1>
+        <p>Esto es texto
+            <p>
+                <h2>Encabezado nivel 2</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur veniam, officia aspernatur voluptatem dicta nobis voluptatibus iste cupiditate, earum numquam nihil similique quam. Blanditiis repudiandae, dolorum similique accusantium eligendi rem.
+                </p>
+                <h2>Encabezado nivel 2</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid voluptatibus harum molestiae! Quos aliquam quam earum impedit architecto eaque repellendus, quaerat neque rem nesciunt sit ipsa, fugiat enim dolor. Enim.</p>
+    </body>
+
+    </html>
+    {% endhighlight %}
 
 
-</section>
+    <p>En el ejemplo anterior el código HTML esta resaltado en azul y todos los caracteres que se encuentran dentro de las cuñas (<>)  son elementos html, estos elementos están formados por do<strong>s tags (etiquetas)</strong>  una de apertura  (<apetura>) y otra de cierre (</cierre>), siendo la unica diferencia la<strong> /</strong> en el tag de cierre.</p>
+
+    <h2 id="sub-section">Anatomia de los elementos HTML</h2>
+
+    <p>Como mencione anteriormente los elementos de html están usualmente delimitados por dos etiquetas, una de apertura y otra de cierre, siendo la principal  diferencia la / (slash) en la etiqueta de cierre. Estas etiquetas encapsulan el contenido y definen el comportamiento que este tendra.</p>
+
+    {% highlight html %}<b>La etiqueta b define las negritas</b>
+<i>i es para cursivas</i>
+<u>u es para subrayado</u>
+    {% endhighlight %}
+
+  <h2 id="sub-section">Atributos de los elementos HTML</h2>
+
+  Una característica importante de las etiquetas de HTML, son los atributois
 
 
-<section class="bs-docs-section">
-  <h1 id="overview" class="page-header"> Elementos que  Conforman una Etiqueta</h1>
-<p>La definición  de HTML es  Hyper Text Markup Language (enguaje de marcas de hipertexto), esto no dice mucho pero se refiere al a comopsición y estructura del lenguaje utilizado para la creación de las paginas web,</p>
-  <blockquote>
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur ratione reprehenderit, consequuntur consequatur voluptas omnis, blanditiis aut reiciendis eos eligendi minima obcaecati, commodi dolores, fugiat beatae accusamus assumenda tenetur repellendus.
-  </blockquote>
+
 
 
 </section>
