@@ -6,7 +6,7 @@ isHome: false
 ---
 
 <section class="bs-docs-section">
-    <h1 id="overview" class="page-header"> En qué consiste una Página Web
+    <h1 id="que_es" class="page-header"> En qué consiste una Página Web
 </h1>
     <p>Las páginas Web son para fines prácticos documentos HTML que se despliegan al usuario en un navegador web, dependiendo el sitio que estemos visitando puede haber un sistema detrás generando el contenido (wordpress, Drupal, Blackboard, etc), o pueden
         ser simplemente archivos html, no importa lo que haya detrás (backend) el usuario final sólo verá archivos html en su navegador, sin importar si fueron creados dinámicamente o no, para el navegador todo esto es igual.</p>
@@ -23,7 +23,7 @@ isHome: false
 
 </section>
 <section class="bs-docs-section">
-    <h1 id="overview" class="page-header"> Definción de HTML </h1>
+    <h1 id="definicion" class="page-header"> Definción de HTML </h1>
     <p>HTML Hyper Text Markup Language (Lenguaje de Marcación de Documentos para Hipertexto) es básicamente un conjunto de etiquetas que se utiliza para establecer el contenido y la estructura de las páginas web.</p>
     <p>Este Lenguaje de Marcación se define como tal porque utiliza etiquetas (tags en Inglés) para encapsular el contenido y describir diferentes características de este, un ejemplo de una etiqueta sería:</p>
 
@@ -39,7 +39,7 @@ isHome: false
 </section>
 
 <section class="bs-docs-section">
-    <h1 id="overview" class="page-header">Sintaxis de HTML </h1>
+    <h1 id="sintaxis" class="page-header">Sintaxis de HTML </h1>
     <p>Como mencione anteriormente HTML es un lenguaje de marcado/marcación, es decir que su sintaxis se basa en el uso de elementos, delimitados por etiquetas o tags en inglés, para definir y describir los diferentes elementos que componen al documento.
     </p>
 
@@ -60,23 +60,56 @@ isHome: false
     {% endhighlight %}
 
 
+
     <p>En el ejemplo anterior el código HTML esta resaltado en azul y todos los caracteres que se encuentran dentro de las cuñas (<>)  son elementos html, estos elementos están formados por do<strong>s tags (etiquetas)</strong>  una de apertura  (<apetura>) y otra de cierre (</cierre>), siendo la unica diferencia la<strong> /</strong> en el tag de cierre.</p>
 
-    <h2 id="sub-section">Anatomia de los elementos HTML</h2>
+    <h2 id="sub-section">Anatomia de las etiquetas HTML</h2>
+    <p>Los elementos de html están usualmente delimitados por dos etiquetas, una de apertura y otra de cierre, que  deben escribrise siempre en minúsculas, deb siendo la principal  diferencia la / (slash) en la etiqueta de cierre. Estas etiquetas encapsulan el contenido y definen el comportamiento que este tendra.</p>
+    <img class="img-responsive center-block" src="images/tag.png" alt="elemento de html">
 
-    <p>Como mencione anteriormente los elementos de html están usualmente delimitados por dos etiquetas, una de apertura y otra de cierre, siendo la principal  diferencia la / (slash) en la etiqueta de cierre. Estas etiquetas encapsulan el contenido y definen el comportamiento que este tendra.</p>
+<p> A continuaciòn verán algunos de ejmplos de direntes etiquetas  </p>
 
     {% highlight html %}<b>La etiqueta b define las negritas</b>
 <i>i es para cursivas</i>
 <u>u es para subrayado</u>
     {% endhighlight %}
 
-  <h2 id="sub-section">Atributos de los elementos HTML</h2>
+  <h2 id="sub-section">Atributos de un elemento</h2>
 
-  Una característica importante de las etiquetas de HTML, son los atributois
+<p>
+Una característica importante de las etiquetas de HTML, son los <em>atributos</em>, que se localizan en la etiqueta de apertura, y para proveen información adicional respecto al elemento que los contiene, esta información  puede ser para modificar el comportamiento, el estilo o la interactividad bajo ciertas circunstancias. Los atributos están compuestos de dos partes,  <em>nombre</em> y  <em>valor</em>,  ambos es recomendable escribirlos siempre  en minúsculas al igual que las etiquetas.</p>
+
+<img src="images/atributo.png" alt="atributo de html">
+
+<p>En  ejemplo anterior el atributo <em>“id”</em> sirve para darle un nombre unico que identifique al elemento.</p>
+<p>La mayoría de  los atributos están restringidos a ciertos elementos, aunque muchos de ellos pueden utilizarse en todos los elementos; también es importante mencionar que ciertos valores tienen un formato predefinido que exploraremos conforme avancemos en esta guía.</p>
+
+</section>
 
 
+<section class="bs-docs-section">
+    <h1 id="estructura" class="page-header">Estructura de un Documento HTML </h1>
+  <p>  Un documento HTML requiere de cierta estructura para que pueda ser interpretado correctamente por los diferentes navegadores, esta a su vez esta compuesta por varias partes :</p>
 
 
+<dl>
+  <dt><strong>HTML:</strong>Esta etiqueta encapsula las demás etiquetas y le dice al navegador que el documento es un HTML</dt>
+  <dt><strong>Head</strong> delimitado por la etiqueta<strong> &#60;head&#62;</strong>: Cabeza o cabecera, aqui se colocan diversas etiquetas informativas, respecto al documento, como el tíitulo, el tipod de documento, referencias a otros archivos, etc. El contenido de esta no aparece en le navegador y no es visto por el usuario,  pero sirve a los navegadores y otros sistemas para encontrar información útil para entender y procesar el documento.</dt>
+  <dt><strong>Body</strong> delimitado por la etiqueta<strong> &#60;body&#62;</strong>: Esto es lo que ve el usuario, aqui esta todo el contenido, texto, imágenes, sonido, video, etc</dt>
+</dl>.
+
+    {% highlight html %}
+    <html>
+    <head>
+      <title>Soy el titulo y soy parte del head</title>
+    </head>
+    <body>
+
+      <p>Este es el cuerpo de mi primera página HTML</p>
+      <p>Esto es parte del cuerpo también</p>
+
+    </body>
+    </html>
+      {% endhighlight %}
 
 </section>
