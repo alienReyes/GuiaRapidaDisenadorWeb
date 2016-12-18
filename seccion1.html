@@ -113,3 +113,87 @@ Una característica importante de las etiquetas de HTML, son los <em>atributos</
       {% endhighlight %}
 
 </section>
+
+
+<section class="bs-docs-section">
+    <h1 id="primeraPagina" class="page-header">Creando Nuestra primer Pagina HTML </h1>
+      <h2 id="editors">Editores de HTML</h2>
+      <p>Antes de crear nuestro primer documento de HTML primero debemos seleccionar un editor para hacerlo; existen dos tipos de editores de HTML los editores What You See Is What Get,WYSIWG, que son editores con una interfaz gráfica donde simplemente nos limitamos a arrastrar los diferentes elementos que necesitamos para construir nuestro documento y el programa se encarga de transformar esto a código HTMl, ahora el problema con este tipo de software es que crea mucho código innecesario y que al momento de realizar cambios es muy díficil interpretar lo que el software ha creado esto complica mucho el mantenimiento, además de que este tipo de programas limita muhco nuestras opciones.</p>
+<p>Otro tipo de editores de HTML son los editores de texto especializados, estos son mucho más simples en cuanto a sus elementos pero requieren un mayor conocimiento de HTML, ya que tenemos que escribir todo prácticamente desde cero, pero nos da la ventaja de que sólo incluiremos lo que necesitamos y que tenemos total control sobre el documento generado.</p>
+<p>Dado que que esto es una guia de HTML optaremos por el editor de texto, ahora hay muchas opciones gratuitas y pagadas de estos editores pero para esta guía usaremos <a href="https://atom.io/" >ATOM </a>, ya que es ligero, gratis, tiene opciones de personalización muy interesantes y funciona tanto en MAC como en PC.</p>
+    <h2 id="documentHTML">Nuestra Primera Página</h2>
+    <p>Es momento de crear nuestro primer documento HTML, para comenzar a entender y poner en práctia algunos conceptos asi que abran su editor de HTML favorito, en mi caso es ATOM, así que comenzemos</p>
+<h3>Doctype</h3>
+<p>Esta es la primer instrucción que debemos poner en nuestro documento HTML, antes de la etiqueta <html>, ya que indica al navegador el tipo de documento que tiene que interpretar, en versiones pasadas de HTML era una etiqueta mucho más compleja pero desde el HTML5 comenzamos con la forma actual que es mucho más corta y clara</p>
+  {% highlight html %}
+  <!DOCTYPE html>
+    {% endhighlight %}
+
+
+
+    <h3>Etiqueta HTML</h3>
+    <p>A continuaci&oacute;n agregaremos la etiqueta <strong>&lt;html&gt;,</strong> acompa&ntilde;ada del atributo<strong> lang</strong> que tendr&aacute; el valor <strong>es-mx</strong>, este atributo define el idioma y el pa&iacute;s del documento, en este caso el idioma es espa&ntilde;ol (es) y el pa&iacute;s, M&eacute;xico(mx) esto ayuda a los navegadores y a los motores de busqueda a encontrar el documento y a categorizarlo</p>
+
+
+    {% highlight html %}
+    <html lang="es-mx">
+    </html>
+      {% endhighlight %}
+
+      <h2 id="head_tag">Head, Cabeza</h2>
+
+      <p>&nbsp;A continuaci&oacute;n vamos construir la cabeza del documento (uso el termino <em>cabeza</em> para no confundirlo con <em>cabecera</em>) esta contiene informaci&oacute;n que el navegador&nbsp; y los motores de b&uacute;squeda &nbsp;usaran para interpretar correctamente el documento y elementos extras para la presentaci&oacute;n del documento, pero por ahora nos enfocaremos en los componentes esenciales</p>
+
+      <h3>Juego de Caracteres</h3>
+<p>El juego de caracteres le indica al navegador la colecci&oacute;n de s&iacute;mbolos que requiere para desplegar la p&aacute;gina correctamente, me refiero a los caracteres como letras acentuadas, di&eacute;resis, y s&iacute;mbolos de diversos idiomas; cuando este juego de caracteres no esta especificado podemos encontrarnos con problemas como que algunas letras no se despliegan o no podemos ver acentos y signos de puntuaci&oacute;n particulares de nuestro idioma.</p>
+<p>Este juego de caracteres, o codificaci&oacute;n, depende del sistema operativo que est&aacute;s usando para crear tu archivo HTML. Mientras que unos sistemas como Linux o Mac usan por defecto un juego de caracteres llamado UTF-8, en Windows se usa de manera predeterminada otro juego de caracteres llamado ISO-8859-1. Es otro de los motivos por los que en pasados art&iacute;culos recomend&aacute;bamos Brackets o Atom como editores de c&oacute;digo, ya que &eacute;stos trabajan siempre en UTF-8, independientemente del sistema operativo.&nbsp;</p>
+<p>El juego predeterminado de HTML 5 es UTF-8 y cubre la gran parte de los s&iacute;mbolos a nivel mundial. Este juego de caracteres se especifica dentro de una etiqueta <strong>meta</strong> la cual abordaremos m&aacute;s adelante pero por ahora basta con decir que este tipo de etiquetas especifican caracter&iacute;sticas propias del documento.</p>
+  {% highlight html %}
+  <head>
+  <meta charset="UTF-8">
+</head>
+{% endhighlight %}
+
+<h3>Titulo</h3>
+<p>El t&iacute;tulo del documento se especifica con la etiqueta <strong>&lt;title&gt; </strong>&nbsp;este se despliega en la parte en la parte superior de la ventana del navegador</p>
+{% highlight html %}
+<head>
+<meta charset="UTF-8">
+<title>Soy el titulo </title>
+</head>
+{% endhighlight %}
+
+<h2 id="body_tag">Cuerpo/ &nbsp;Body</h2>
+<p>A continuaci&oacute;n viene el <strong>&lt;body&gt; </strong>&nbsp;que es donde se encuentra todo el contenido de nuestra p&aacute;gina y es lo que vera el usuario, por el momento solo crearemos unos cuantos p&aacute;rrafos delimitados por la etiqueta <strong>&lt;p&gt; </strong>de paragraph.</p>
+{% highlight html %}
+<body>
+  <p>Soy un parrrafo, Hola</p>
+</body>
+  {% endhighlight %}
+
+<p>Ahora si juntamos todas las diferentes piezas que hemos ido creando en esta seccion, tenemos:</p>
+
+
+
+{% highlight html %}
+<!DOCTYPE html>
+<html lang="es-mx">
+<head>
+  <meta charset="UTF-8">
+  <title>Mi primera página</title>
+</head>
+<body>
+  <p>Hola</p>
+  <p>Soy tu primer página</p>
+</body>
+</html>
+{%endhighlight%}
+
+<p>Ahora podemos salvar el documento y abrirlo con cualquier navegador y deberemos ver algo como esto:</p>
+
+<img class="img-responsive center-block" src="images/primera_pagina.png" alt="elemento de html">
+
+
+
+
+<section>
