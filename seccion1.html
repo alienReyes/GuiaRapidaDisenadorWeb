@@ -193,7 +193,81 @@ Una característica importante de las etiquetas de HTML, son los <em>atributos</
 
 <img class="img-responsive center-block" src="images/primera_pagina.png" alt="elemento de html">
 
+<section class="bs-docs-section">
+    <h1 id="basic--elements" class="page-header">Elementos Básicos de HTML</h1>
+    <p>Ahora que ya sabemos como crear nuestra primer página de HTML es momento de que revisar los elementos básicos que utilizaremos para crear nuestros documentos, comenzaremos con las etiquetas para dar formato al texto y continuaremos con las que son utilizadas para dar estructura al documento.</p>
+  <h2 id="text--tags">Elementos de Texto</h2>
+  <h3>&#60;p&#62; Párrafo	</h3>
+  <p>Se utiliza para definir un párrafo de texto, algo que hay que recordar es que usualment los navegadores agregaran un margen superior e inferior a este tipo de eiquetas.</p>
+  {% highlight html %}
+  <p>Soy un Párrafo</p>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec semper dui vitae sagittis gravida. In porta, felis a dapibus semper, ligula erat lacinia urna, nec vulputate massa lacus vitae metus. Morbi nec dapibus velit, in ornare diam. Vestibulum sed nisi tortor. Morbi rhoncus turpis sed mattis auctor. Phasellus imperdiet massa arcu. Vivamus eu urna id mi egestas lobortis.</p>
+  {% endhighlight %}
+  <h3>&#60;br&#62; Salto de Línea</h3>
+  <p>Se utiliz para  forzar un salto de linea dentro de un párrafo o de cualquier otro elemento, este elemento es diferente a las demás ya que no necesita más que la etiqueta de apertura,  es muy útil para escribir direcciones o versos, pero no es recomendable que sea utilizada para delimitar párrafos.
+    {% highlight html %}
+Soy un verso <br>
+ahora esto esta en otra linea <br>
+esto es una tercera <br>
+    {% endhighlight %}
 
+      <h3>Encabezados de  &#60;h1&#62;  a &#60;h6&#62;</h3>
+      <p>Para definir encabezados  o titulos utilizaremos los elementos y van del 1 al 6 dependiendo de la jeraraquia siendo el 1 el más importante y 6 el de menor peso.</p>
+
+      <h1>Encabezado de nivel 1</h1>
+      <h2>Encabezado de nivel 2</h2>
+      <h3>Encabezado de nivel 3</h3>
+      <h4>Encabezado de nivel 4</h4>
+      <h5>Encabezado de nivel 5</h5>
+      <h6>Encabezado de nivel 6</h6>
+
+      <p>Y así es como se ve el HTML del ejemplo anterior</p>
+      {% highlight html %}
+      <h1>Encabezado de nivel 1</h1>
+<h2>Encabezado de nivel 2</h2>
+<h3>Encabezado de nivel 3</h3>
+<h4>Encabezado de nivel 4</h4>
+<h5>Encabezado de nivel 5</h5>
+<h6>Encabezado de nivel 6</h6>
+      {% endhighlight %}
+
+</p>
+
+<h2 id="text--emphasis">Elementos para enfasis</h2>
+
+<p>Los siguientes elementos sirven para resaltar el texto de diversas maneras, y producen diferentes resultados con los estilos predeterminados del navegador, pero es posible tener mayor control sobre ellos utilizando CSS como veremos más adelante, pero es importante conocer las diferencias entre cada uno para mantener la estructura sémantica del documento así como la accesibilidad de este.
+</p>
+<h3>&#60;Strong&#62;</h3>
+<p>Se utiliza usualmente para representar negritas, pero  actualmente es utilizada para denotar enfásis en palabras o frases que queremos resaltar.  Es importante recordar que aunque si utilizamos esta etiqueta obtendremos texto en negritas, esta no es la manera correcta de declararlas, para esto utilizaremos CSS como veremos más adelante.
+</p>
+{% highlight html %}
+<p>En esta frase solo queremos <strong>resaltar estas palabras</strong> lo demás lo mantenemos como estaba</p>
+{% endhighlight %}
+<h3>&#60;em&#62;</h3>
+<p>Este es otro elemento de enfásis pero es de menor jerarquía que &#60;Strong&#62;, es muy usado actualmente para resaltar texto.</p>
+{% highlight html %}
+<p>En esta frase solo queremos <em>resaltar estas palabras</em> lo demás lo mantenemos como estaba</p>
+{% endhighlight %}
+<h3>&#60;i&#62;</h3>
+<p>Se utiliza usualmente para representar italicas, pero  actualmente es utilizada en casos donde el texto debe ir en este formato, como nombres extranjeros, terminos técnicos, instrucciones en un guión, etec. Es importante resaltar que aunque si utilizamos esta etiqueta obtendremos texto en italicas, esta no es la manera correcta de declararlas, para esto utilizaremos CSS como veremos más adelante.
+</p>
+{% highlight html %}
+<p>En esta frase solo queremos <i>esto en italicas </i> lo demás lo mantenemos como estaba</p>
+{% endhighlight %}
+<h3>&#60;b&#62;</h3>
+<p>Esta etiqueta se solía utilizar resaltar con negritas pero ahora es para diferenciar una palabra de las demás sin denotar mayor importancia.
+</p>
+
+{% highlight html %}
+<p>En esta frase solo queremos <b>esto en negritas </b> lo demás lo mantenemos como estaba</p>
+{% endhighlight %}
+
+
+
+
+
+
+</section>
 
 
 <section>
